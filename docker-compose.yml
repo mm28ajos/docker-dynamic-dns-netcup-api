@@ -1,0 +1,9 @@
+version: '2.2'
+services:
+  dynamic-dns-netcup-updater:
+    image: mm28ajos/dynamic-dns-netcup-api:latest
+    volumes:
+      - /home/markus/Documents/Git/docker-dynamic-dns-netcup-api/config.php:/usr/src/dynamic-dns-netcup-api/config.php
+      - /home/markus/Documents/Git/docker-dynamic-dns-netcup-api/msmtprc.conf:/root/.msmtprc
+    network_mode: host
+    restart: unless-stopped
