@@ -4,6 +4,8 @@
  */
 function getEnvironmentVariables()
 {
+	global $config_array;
+
 	if ($customnr = getenv('CUSTOMERNR')) {
 		$config_array['CUSTOMERNR'] = $customnr;
 	}
