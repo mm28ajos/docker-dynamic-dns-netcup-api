@@ -11,7 +11,7 @@
 ## Features
 ### Implemented
 * All necessary API functions for DNS actions implemented (REST API)
-* Determines correct public IP addresses (IPv4 and IPv6) without external third party look ups using local adapter for IPV or local FritzBox (external API call for determining the IPv4 addresses possible if no fritz box available or as fallback)
+* Determines correct public IP addresses (IPv4 and IPv6) without external third party look ups using local adapter for IPv6 or local FritzBox (external API call for determining the IPv4 addresses possible if no fritz box available or as fallback)
 * Caching the IP provided to netcup DNS to avoid unnecessary API calls
 * Updating of a specific subdomain, domain root, or multiple subdomains
 * configure hosts for updating IPv4 and IPv6 separately
