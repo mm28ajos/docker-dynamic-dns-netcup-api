@@ -68,5 +68,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: <dockerhub name/repo>
+          repository: mm28ajos/docker-dynamic-dns-netcup-api
           readme: "./README.md"

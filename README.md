@@ -25,11 +25,12 @@
 
 ## Getting started
 ### Docker Compose
-Create a docker compose file, see an example below. Note, the network_mode must be host. Add the configuration files for the update script and msmtprc, if mail notification should be used, as volumes. Refer to exmaple configuration below.
+Create a docker compose file, see an example below. Note, the network_mode must be host in order to allow for retrieval of the ipv6 address from local adapter. Add the configuration files for the update script and msmtprc, if mail notification should be used, as volumes. Refer to exmaple configuration below.
 
 Alternativly, use environment variables for the script settings, see next section.
 
 ```
+# only settings from config files
 version: '2.2'
 services:
   dynamic-dns-netcup-updater:
@@ -38,8 +39,36 @@ services:
       - /path/config.ini:/usr/src/dynamic-dns-netcup-api/config.ini
       - /path/msmtprc.conf:/root/.msmtprc
     network_mode: host
+    restart: unless-stopped
+```
+
+```
+# all settings via environment variables
+version: '2.2'
+services:
+  dynamic-dns-netcup-updater:
+    image: mm28ajos/dynamic-dns-netcup-api:latest
+    volumes:
+      - /path/msmtprc.conf:/root/.msmtprc
+    network_mode: host
     environment:
-      - HOST_IPv4=test.sudomain
+      - CUSTOMERNR = 12345
+      - APIKEY = abcdefghijklmnopqrstuvwxyz
+      - APIPASSWORD = abcdefghijklmnopqrstuvwxyz
+      - APIURL = "https://ccp.netcup.net/run/webservice/servers/endpoint.php?JSON"
+      - DOMAIN = mydomain.com
+      - USE_IPV4 = true
+      - HOST_IPv4 = "sub.subdomainA,server1.subdomainC"
+      - USE_FRITZBOX = false
+      - FRITZBOX_IP = fritz.box
+      - USE_IPV6 = false
+      - HOST_IPv6 = "sub.subdomainB,server1.subdomainB"
+      - IPV6_INTERFACE = eth0
+      - NO_IPV6_PRIVACY_EXTENSIONS = true
+      - CHANGE_TTL = true
+      - SEND_MAIL = false
+      - MAIL_RECIPIENT = user@domain.tld
+      - SLEEP_INTERVAL_SEC = 5
     restart: unless-stopped
 ```
 ### Configuration
