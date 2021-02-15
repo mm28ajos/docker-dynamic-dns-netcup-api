@@ -1,6 +1,6 @@
 FROM php:8.0.2-cli
 
-ARG version=v4.1.1
+ARG version=v4.1.2
 
 WORKDIR /usr/src/dynamic-dns-netcup-api/
 
