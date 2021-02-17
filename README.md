@@ -30,7 +30,7 @@ Alternativly, use environment variables for the script settings, see next sectio
 version: '2.2'
 services:
   dynamic-dns-netcup-updater:
-    image: mm28ajos/dynamic-dns-netcup-api:latest
+    image: mm28ajos/docker-dynamic-dns-netcup-api:latest
     volumes:
       - /path/config.ini:/usr/src/dynamic-dns-netcup-api/config.ini
       - /path/msmtprc.conf:/root/.msmtprc
@@ -43,7 +43,7 @@ services:
 version: '2.2'
 services:
   dynamic-dns-netcup-updater:
-    image: mm28ajos/dynamic-dns-netcup-api:latest
+    image: mm28ajos/docker-dynamic-dns-netcup-api:latest
     volumes:
       - /path/msmtprc.conf:/root/.msmtprc
     network_mode: host
