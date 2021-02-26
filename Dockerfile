@@ -1,15 +1,16 @@
-FROM php:8.0.2-cli
+FROM debian:stable-slim
 
-ARG version=v4.1.4
+ARG version=v4.1.5
+ARG PHP_INI_DIR=/etc/php/7.3/cli
 
 WORKDIR /usr/src/dynamic-dns-netcup-api/
 
 RUN apt-get update && apt-get install -y \
-        iproute2 msmtp  git \
-    && echo "sendmail_path = '/usr/bin/msmtp -t'" > $PHP_INI_DIR/conf.d/php-mail.ini \
+        iproute2 msmtp git php-cli php-curl tzdata \
+    && echo "sendmail_path = '/usr/bin/msmtp -t'" > ${PHP_INI_DIR}/conf.d/php-mail.ini \
     && git clone -b ${version} https://github.com/mm28ajos/dynamic-dns-netcup-api ./ \
-    && apt-get purge -y git && rm -rf .git LICENSE README.md Dockerfile .github
+    && apt-get purge -y git && apt autoremove -y && rm -rf .git LICENSE README.md Dockerfile .github
 
 COPY update-docker.php ./
 
-CMD [ "php", "./update-docker.php", "--quiet" ]
+CMD [ "php", "./update-docker.php", "--quiet"]

@@ -21,7 +21,7 @@
 
 ## Getting started
 ### Docker Compose
-Create a docker compose file, see an example below. Note, the network_mode must be host in order to allow for retrieval of the ipv6 address from local adapter. Add the configuration files for the update script and msmtprc, if mail notification should be used, as volumes. Refer to exmaple configuration below.
+Create a docker compose file, see an example below. Note, the network_mode must be host in order to allow for retrieval of the ipv6 address from local adapter. Add the configuration files for the update script and msmtprc, if mail notification should be used, as volumes. Refer to exmaple configuration below. Set time zone by TZ environment variable.
 
 Alternativly, use environment variables for the script settings, see next section.
 
@@ -35,6 +35,8 @@ services:
       - /path/config.ini:/usr/src/dynamic-dns-netcup-api/config.ini
       - /path/msmtprc.conf:/root/.msmtprc
     network_mode: host
+    environment:
+      - TZ=Europe/Berlin
     restart: unless-stopped
 ```
 
@@ -48,6 +50,7 @@ services:
       - /path/msmtprc.conf:/root/.msmtprc
     network_mode: host
     environment:
+      - TZ=Europe/Berlin
       - CUSTOMERNR = 12345
       - APIKEY = abcdefghijklmnopqrstuvwxyz
       - APIPASSWORD = abcdefghijklmnopqrstuvwxyz
