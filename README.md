@@ -54,14 +54,13 @@ services:
       - CUSTOMERNR = 12345
       - APIKEY = abcdefghijklmnopqrstuvwxyz
       - APIPASSWORD = abcdefghijklmnopqrstuvwxyz
-      - APIURL = "https://ccp.netcup.net/run/webservice/servers/endpoint.php?JSON"
       - DOMAIN = mydomain.com
       - USE_IPV4 = true
-      - HOST_IPv4 = "sub.subdomainA,server1.subdomainC"
+      - HOST_IPv4 = sub.subdomainA, server1.subdomainC
       - USE_FRITZBOX = false
       - FRITZBOX_IP = fritz.box
       - USE_IPV6 = false
-      - HOST_IPv6 = "sub.subdomainB,server1.subdomainB"
+      - HOST_IPv6 = sub.subdomainB, server1.subdomainB
       - IPV6_INTERFACE = eth0
       - NO_IPV6_PRIVACY_EXTENSIONS = true
       - CHANGE_TTL = true
@@ -82,9 +81,6 @@ CUSTOMERNR = 12345
 APIKEY = abcdefghijklmnopqrstuvwxyz
 APIPASSWORD = abcdefghijklmnopqrstuvwxyz
 
-; Use netcup DNS REST-API
-APIURL = https://ccp.netcup.net/run/webservice/servers/endpoint.php?JSON
-
 ; Enter Domain which should be used for dynamic DNS
 DOMAIN = mydomain.com
 
@@ -92,8 +88,8 @@ DOMAIN = mydomain.com
 ; Activate IPv4 update
 USE_IPV4 = true
 
-; Required if USE_IPV4 = true. Enter subdomain(s) to be used for dynamic DNS IPv4, alternatively '@' for domain root or '*' for wildcard. If the record doesn't exist, the script will create it.
-HOST_IPv4 = sub.subdomainA,server1.subdomainC
+; Required if USE_IPV4 = true. Enter subdomain(s) to be used for dynamic DNS IPv4 (seperated by comma), alternatively '@' for domain root or '*' for wildcard. If the record doesn't exist, the script will create it.
+HOST_IPv4 = sub.subdomainA, server1.subdomainC
 
 ; Should the script try to get the public IPv4 from your FritzBox?
 USE_FRITZBOX = false
@@ -107,8 +103,8 @@ USE_FRITZBOX = false
 ; Activate this only if you have IPv6 connectivity, or you *WILL* get errors.
 USE_IPV6 = false
 
-; Required if USE_IPV6 = true. Enter subdomain(s) to be used for dynamic DNS IPv6, alternatively '@' for domain root or '*' for wildcard. If the record doesn't exist, the script will create it.
-; HOST_IPv6 = sub.subdomainB,server1.subdomainB
+; Required if USE_IPV6 = true. Enter subdomain(s) to be used for dynamic DNS IPv6 (seperated by comma), alternatively '@' for domain root or '*' for wildcard. If the record doesn't exist, the script will create it.
+; HOST_IPv6 = sub.subdomainB, server1.subdomainB
 
 ; Required if USE_IPV6 = true. The interface to get the IPv6 address from
 ; IPV6_INTERFACE = eth0
