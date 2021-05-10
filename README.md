@@ -1,5 +1,5 @@
-# Dynamic DNS client for netcup DNS API
-**A dynamic DNS client written in PHP for use with the netcup DNS API.** This project is a fork of https://github.com/stecklars/dynamic-dns-netcup-api, refer to https://github.com/mm28ajos/dynamic-dns-netcup-api.
+# Dockernized dynamic DNS client for netcup DNS API
+**A dockernized dynamic DNS client written in PHP for use with the netcup DNS API.** This project is a fork of https://github.com/stecklars/dynamic-dns-netcup-api, refer to https://github.com/mm28ajos/dynamic-dns-netcup-api.
 
 ## Features
 * Determines public IP addresses (IPv4 and IPv6) without external third party look ups.
@@ -8,7 +8,7 @@
 * setting to choose to only consider ipv6 addresses without privacy extensions for ipv6 (SLAAC)
 * Caching the IP provided to netcup DNS to avoid unnecessary API calls
 * Updating of a specific or multiple subdomains or domain root
-* E-Mail alert in case updating/getting new IP addresses runs in warinings/errors
+* E-Mail alert in case updating/getting new IP addresses runs in warnings/errors
 * configure hosts for updating IPv4 and IPv6 separately
 * Creation of DNS record, if it does not already exist for the subdomain given
 * If configured, lowers TTL to 300 seconds for the domain on each run if necessary
@@ -96,7 +96,6 @@ USE_FRITZBOX = false
 
 ; Required if USE_FRITZBOX = true. IP of the Fritz Box. You can use default fritz.box
 ; FRITZBOX_IP = fritz.box
-
 
 
 ; If set to true, the script will check for your public IPv6 address too and add it as an AAAA-Record / change an existing AAAA-Record for the host.
