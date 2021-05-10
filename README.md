@@ -1,5 +1,6 @@
 # Dockernized dynamic DNS client for netcup DNS API
 **A dockernized dynamic DNS client written in PHP for use with the netcup DNS API.** This project is a fork of https://github.com/stecklars/dynamic-dns-netcup-api, refer to https://github.com/mm28ajos/dynamic-dns-netcup-api.
+Refer to the following repository for extened functionalities not included in this base repository: https://github.com/mm28ajos/docker-dynamic-dns-netcup-api-extended
 
 ## Features
 * Determines public IP addresses (IPv4 and IPv6) without external third party look ups.
