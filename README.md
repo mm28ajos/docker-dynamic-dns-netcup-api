@@ -21,7 +21,7 @@
 
 ## Getting started
 ### Docker Compose
-Create a docker compose file, see an example below. Note, the network_mode must be host in order to allow for retrieval of the ipv6 address from local adapter. Add the configuration files for the update script and msmtprc, if mail notification should be used, as volumes. Refer to exmaple configuration below. Set time zone by TZ environment variable.
+Create a docker compose file, see an example below. Note, the network_mode must be host in order to allow for retrieval of the ipv6 address from local adapter. For debuggig, you may override the default command, refer to example below. Add the configuration files for the update script and msmtprc, if mail notification should be used, as volumes. Refer to exmaple configuration below. Set time zone by TZ environment variable.
 
 Alternativly, use environment variables for the script settings, see next section.
 
@@ -35,6 +35,8 @@ services:
       - /path/config.ini:/usr/src/dynamic-dns-netcup-api/config.ini
       - /path/msmtprc.conf:/root/.msmtprc
     network_mode: host
+    # if you want the container to be verbose, override the default command with this one below
+    command: php ./update-docker.php
     environment:
       - TZ=Europe/Berlin
     restart: unless-stopped
