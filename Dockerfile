@@ -1,11 +1,11 @@
 FROM debian:stable-slim
 
-ARG version=v4.3.2
+ARG version=v4.4.0
 ARG PHP_INI_DIR=/etc/php/7.3/cli
 
 WORKDIR /usr/src/dynamic-dns-netcup-api/
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
         iproute2 msmtp git php-cli php-curl tzdata \
     && echo "sendmail_path = '/usr/bin/msmtp -t'" > ${PHP_INI_DIR}/conf.d/php-mail.ini \
     && git clone -b ${version} https://github.com/mm28ajos/dynamic-dns-netcup-api ./ \
