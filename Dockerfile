@@ -13,4 +13,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 
 COPY update-docker.php ./
 
+COPY --from=docker:latest /usr/local/bin/docker /usr/local/bin/
+
 CMD [ "php", "./update-docker.php", "--quiet"]

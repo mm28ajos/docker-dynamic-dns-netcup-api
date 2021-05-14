@@ -1,6 +1,5 @@
 # Dockernized dynamic DNS client for netcup DNS API
 **A dockernized dynamic DNS client written in PHP for use with the netcup DNS API.** This project is a fork of https://github.com/stecklars/dynamic-dns-netcup-api, refer to https://github.com/mm28ajos/dynamic-dns-netcup-api.
-Refer to the following repository for extened functionalities not included in this base repository: https://github.com/mm28ajos/docker-dynamic-dns-netcup-api-extended
 
 ## Features
 * Determines public IP addresses (IPv4 and IPv6) without external third party look ups.
@@ -13,6 +12,7 @@ Refer to the following repository for extened functionalities not included in th
 * configure hosts for updating IPv4 and IPv6 separately
 * Creation of DNS record, if it does not already exist for the subdomain given
 * If configured, lowers TTL to 300 seconds for the domain on each run if necessary
+* Restart docker containers on IP address change (requires docker socket to be exposed to container)
 
 ## Requirements
 * Be a netcup customer: https://www.netcup.de – or for international customers: https://www.netcup.eu
@@ -22,7 +22,7 @@ Refer to the following repository for extened functionalities not included in th
 
 ## Getting started
 ### Docker Compose
-Create a docker compose file, see an example below. Note, the network_mode must be host in order to allow for retrieval of the ipv6 address from local adapter. For debuggig, you may override the default command, refer to example below. Add the configuration files for the update script and msmtprc, if mail notification should be used, as volumes. Refer to exmaple configuration below. Set time zone by TZ environment variable.
+Create a docker compose file, see an example below. Note, the network_mode must be host in order to allow for retrieval of the ipv6 address from local adapter. For debuggig, you may override the default command, refer to example below. Additionaly, note, the docker socket must be added as volume to the container if you want to restart other containers in case the ipv6 address has changed. Add the configuration files for the update script and msmtprc, if mail notification should be used, as volumes. Refer to exmaple configuration below. Set time zone by TZ environment variable.
 
 Alternativly, use environment variables for the script settings, see next section.
 
@@ -35,9 +35,12 @@ services:
     volumes:
       - /path/config.ini:/usr/src/dynamic-dns-netcup-api/config.ini
       - /path/msmtprc.conf:/root/.msmtprc
+      # required if you want to restart containers if ip address cahnged
+      - /var/run/docker.sock:/var/run/docker.sock
     network_mode: host
     # if you want the container to be verbose, override the default command with this one below
     command: php ./update-docker.php
+
     environment:
       - TZ=Europe/Berlin
     restart: unless-stopped
@@ -70,6 +73,8 @@ services:
       - SEND_MAIL = false
       - MAIL_RECIPIENT = user@domain.tld
       - SLEEP_INTERVAL_SEC = 5
+      - RESTART_CONTAINERS = true
+      - CONTAINERS = containerA, ContainerB
     restart: unless-stopped
 ```
 ### Configuration
@@ -126,6 +131,12 @@ SEND_MAIL = false
 
 ; Define the interval to wait before checking for a new IP again
 SLEEP_INTERVAL_SEC = 5
+
+; If true, restarts all docker containers defined by setting "CONTAINERS" if IP has changed. Note, requires docker socket to be exposed to host.
+RESTART_CONTAINERS = false
+
+; Required if RESTART_CONTAINERS = true. Name all docker containers to restart if ip address changed.
+; CONTAINERS = containerA,containerB
 ```
 
 Mount the mail configuration, if required, to **/root/.msmtprc**, refer to example below.

@@ -73,6 +73,14 @@ function getEnvironmentVariables()
 	if ($sleepinsec = getenv('SLEEP_INTERVAL_SEC')) {
 		$config_array['SLEEP_INTERVAL_SEC'] = $sleepinsec;
 	}
+
+	if ($containerrestart = getenv('RESTART_CONTAINERS')) {
+		$config_array['RESTART_CONTAINERS'] = $containerrestart;
+	}
+
+	if ($containers = getenv('CONTAINERS')) {
+		$config_array['CONTAINERS'] = $containers;
+	}
 }
 
 // get error logging function and load config
