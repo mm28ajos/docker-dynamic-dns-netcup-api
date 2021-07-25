@@ -1,4 +1,8 @@
 # Dockernized dynamic DNS client for netcup DNS API
+
+![Docker Pulls](https://img.shields.io/docker/pulls/mm28ajos/docker-dynamic-dns-netcup-api.svg)
+![Docker Build](https://github.com/mm28ajos/docker-dynamic-dns-netcup-api/actions/workflows/build-images.yml/badge.svg) 
+
 **A dockernized dynamic DNS client written in PHP for use with the netcup DNS API.** This project is a fork of https://github.com/stecklars/dynamic-dns-netcup-api, refer to https://github.com/mm28ajos/dynamic-dns-netcup-api.
 
 ## Features
