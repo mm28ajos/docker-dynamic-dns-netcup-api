@@ -1,7 +1,7 @@
 FROM debian:stable-slim
 
 ARG version=v4.4.1
-ARG PHP_INI_DIR=/etc/php/7.3/cli
+ARG PHP_INI_DIR=/etc/php/7.4/cli
 
 WORKDIR /usr/src/dynamic-dns-netcup-api/
 
