@@ -6,13 +6,14 @@ ARG PHP_INI_DIR=/etc/php/7.4/cli
 WORKDIR /usr/src/dynamic-dns-netcup-api/
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
-        iproute2 msmtp git php-cli php-curl tzdata \
+        iproute2 msmtp git php-cli php-curl tzdata curl \
     && echo "sendmail_path = '/usr/bin/msmtp -t'" > ${PHP_INI_DIR}/conf.d/php-mail.ini \
     && git clone -b ${version} https://github.com/mm28ajos/dynamic-dns-netcup-api ./ \
     && apt-get purge -y git && apt autoremove -y && rm -rf .git LICENSE README.md Dockerfile .github
 
-COPY update-docker.php ./
+RUN curl -fsSL https://get.docker.com -o get-docker.sh && \
+    sh get-docker.sh && rm get-docker.sh && apt purge -y curl && apt autoremove -y
 
-COPY --from=docker:latest /usr/local/bin/docker /usr/local/bin/
+COPY update-docker.php ./
 
 CMD [ "php", "./update-docker.php", "--quiet"]
