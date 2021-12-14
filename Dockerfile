@@ -12,7 +12,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     && apt-get purge -y git && apt autoremove -y && rm -rf .git LICENSE README.md Dockerfile .github
 
 RUN curl -fsSL https://get.docker.com -o get-docker.sh && \
-    sh get-docker.sh && rm get-docker.sh && apt purge -y docker-scan-plugin docker-ce docker-ce-rootless-extras curl && apt autoremove -y
+    sh get-docker.sh && rm get-docker.sh && apt purge -y docker-ce docker-ce-rootless-extras curl && apt autoremove -y
 
 COPY update-docker.php ./
 
