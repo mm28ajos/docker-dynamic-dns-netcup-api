@@ -1,5 +1,17 @@
 <?php
 /**
+ * Signal handling to stop docker container faster.
+ */
+pcntl_async_signals(true);
+
+pcntl_signal(SIGTERM, function ($signo) {
+    var_dump("SIGTERM"); exit;
+});
+pcntl_signal(SIGINT, function ($signo) {
+    var_dump("SIGINT"); exit;
+});
+
+/**
  * Load's all available environment variables and overrides settings from config file.
  */
 function getEnvironmentVariables()
