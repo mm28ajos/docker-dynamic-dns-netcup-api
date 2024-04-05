@@ -98,6 +98,13 @@ function getEnvironmentVariables()
 // get error logging function and load config
 require_once 'functions.php';
 
+// load config file
+if (file_exists("config.ini")) {
+    $config_array = parse_ini_file("config.ini", false, true);
+} else {
+    $config_array = array();
+}
+
 // load and override config set by environment variables
 getEnvironmentVariables();
 
