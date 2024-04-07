@@ -123,7 +123,6 @@ USE_IPV6 = false
 ; Required if USE_IPV6 = true. Shall only IPv6 addresses be set in the AAAA record which have a static EUI-64-Identifier (no privacy extensions)?
 ; NO_IPV6_PRIVACY_EXTENSIONS = true
 
-
 ; If set to true, this will change TTL to 300 seconds on every run if necessary.
 CHANGE_TTL = true
 
