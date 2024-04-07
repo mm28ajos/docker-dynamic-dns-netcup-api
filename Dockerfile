@@ -1,6 +1,6 @@
 FROM debian:stable-slim
 
-ARG version=v4.5.0
+ARG version=v4.5.1
 
 WORKDIR /usr/src/dynamic-dns-netcup-api/
 
