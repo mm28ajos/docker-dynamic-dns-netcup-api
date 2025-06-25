@@ -32,7 +32,6 @@ Alternativly, use environment variables for the script settings, see next sectio
 
 ```
 # only settings from config files
-version: '2.2'
 services:
   dynamic-dns-netcup-updater:
     image: mm28ajos/docker-dynamic-dns-netcup-api:latest
@@ -52,7 +51,6 @@ services:
 
 ```
 # all settings via environment variables
-version: '2.2'
 services:
   dynamic-dns-netcup-updater:
     image: mm28ajos/docker-dynamic-dns-netcup-api:latest
@@ -61,24 +59,24 @@ services:
     network_mode: host
     environment:
       - TZ=Europe/Berlin
-      - CUSTOMERNR = 12345
-      - APIKEY = abcdefghijklmnopqrstuvwxyz
-      - APIPASSWORD = abcdefghijklmnopqrstuvwxyz
-      - DOMAIN = mydomain.com
-      - USE_IPV4 = true
-      - HOST_IPv4 = sub.subdomainA, server1.subdomainC
-      - USE_FRITZBOX = false
-      - FRITZBOX_IP = fritz.box
-      - USE_IPV6 = false
-      - HOST_IPv6 = sub.subdomainB, server1.subdomainB
-      - IPV6_INTERFACE = eth0
-      - NO_IPV6_PRIVACY_EXTENSIONS = true
-      - CHANGE_TTL = true
-      - SEND_MAIL = false
-      - MAIL_RECIPIENT = user@domain.tld
-      - SLEEP_INTERVAL_SEC = 5
-      - RESTART_CONTAINERS = true
-      - CONTAINERS = containerA, ContainerB
+      - CUSTOMERNR=12345
+      - APIKEY=abcdefghijklmnopqrstuvwxyz
+      - APIPASSWORD=abcdefghijklmnopqrstuvwxyz
+      - DOMAIN=mydomain.com
+      - USE_IPV4=true
+      - HOST_IPv4=sub.subdomainA,server1.subdomainC
+      - USE_FRITZBOX=false
+      - FRITZBOX_IP =fritz.box
+      - USE_IPV6=false
+      - HOST_IPv6=sub.subdomainB,server1.subdomainB
+      - IPV6_INTERFACE=eth0
+      - NO_IPV6_PRIVACY_EXTENSIONS=true
+      - CHANGE_TTL=true
+      - SEND_MAIL=false
+      - MAIL_RECIPIENT=user@domain.tld
+      - SLEEP_INTERVAL_SEC=5
+      - RESTART_CONTAINERS=true
+      - CONTAINERS=containerA,ContainerB
     restart: unless-stopped
 ```
 ### Configuration

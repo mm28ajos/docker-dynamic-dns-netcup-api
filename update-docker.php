@@ -112,6 +112,9 @@ getEnvironmentVariables();
 if (is_numeric($config_array['SLEEP_INTERVAL_SEC'])) {
 	while (true) {
 	        require 'update.php';
+
+		getEnvironmentVariables();
+
 		sleep($config_array['SLEEP_INTERVAL_SEC']);
 	}
 } else {
